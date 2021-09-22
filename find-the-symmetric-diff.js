@@ -9,8 +9,8 @@ function sym(...args) {
       currentVal.add(val)
     })
     return currentVal
-  }, new Set());
+  }, new Set())
   return [...result]
 }
 
-console.log(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]));
+console.log(sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]))
