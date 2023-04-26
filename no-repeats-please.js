@@ -1,6 +1,7 @@
 function permAlone(str) {
   const arr = str.split('');
   let output = [];
+  let regex = /\S*(\w)(?=\1+)\S*/;
   const generatePermutations = (n, heapArr) => {
     // This was not intuitive. I had to look up Heap's algorithm to figure this out.
     // Also, understanding recursion and call stacks helped me understand what was going on in this function 
@@ -11,7 +12,10 @@ function permAlone(str) {
       arrayToSwap[indexB] = previousElementForA;
     }
     if (n === 1) {
-      output = [...output, ...heapArr];
+      const permutation = heapArr.slice().join('');
+      if (!regex.test(permutation)) {
+        output.push(permutation);
+      }
       return;
     }
 
@@ -29,10 +33,10 @@ function permAlone(str) {
 
   generatePermutations(arr.length, arr.slice());
 
-  return output;
+  return output.length;
 }
 
-console.log(permAlone('aab'));
+console.log(permAlone('abfdefa'));
 
 // Return the number of total permutations of the provided string that don't have repeated consecutive letters. Assume that all characters in the provided string are each unique.
 // For example, aab should return 2 because it has 6 total permutations(aab, aab, aba, aba, baa, baa), but only 2 of them(aba and aba) don't have the same letter (in this case a) repeating.
