@@ -1,5 +1,15 @@
 function pairwise(arr, arg) {
-  return arg;
+  let result = 0;
+  let usedIndices = [];
+  for (let index = 0; index < arr.length; index++) {
+    arr.forEach((item, i) => {
+      if(index != i && arr[index] + item == arg && !usedIndices.includes(i) && !usedIndices.includes(index)) {
+        result += (i + index)
+        usedIndices = [...usedIndices, i, index];
+      }
+    });
+  }
+  return result;
 }
 
 console.log(pairwise([1,4,2,3,0,5], 7));
