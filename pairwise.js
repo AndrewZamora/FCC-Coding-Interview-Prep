@@ -1,19 +1,26 @@
 function pairwise(arr, arg) {
-  let result = 0;
-  let usedIndices = [];
+  let indices = {};
+  let sum = 0;
   for (let index = 0; index < arr.length; index++) {
-    arr.forEach((item, i) => {
-      if(index != i && arr[index] + item == arg && !usedIndices.includes(i) && !usedIndices.includes(index)) {
-        result += (i + index)
-        usedIndices = [...usedIndices, i, index];
-      }
-    });
+    const element = arr[index];
+    const potentialValue = arg - element;
+    if(indices[element] !== undefined ) {
+      sum += (index + indices[element][0])
+      indices[element].splice(0, 1)
+    }
+    if(indices[potentialValue] === undefined) {
+      
+      indices[potentialValue] =  [index];
+    } else {
+      
+      indices[potentialValue] =  [...indices[potentialValue], index];
+    }
   }
-  return result;
+  return sum
 }
 
-console.log(pairwise([1,4,2,3,0,5], 7));
-
+console.log(pairwise([0, 0, 0, 0, 1, 1], 1));
+// 1 + 3 + 2 + 5
 // Pairwise
 
 // Given an array arr, find element pairs whose sum equal the second argument arg and return the sum of their indices.
