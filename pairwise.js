@@ -1,25 +1,25 @@
 function pairwise(arr, arg) {
-  let indices = {};
+  let potentialPairs = {};
   let sum = 0;
   for (let index = 0; index < arr.length; index++) {
     const element = arr[index];
-    const potentialValue = arg - element;
-    if(indices[element] !== undefined ) {
-      sum += (index + indices[element][0])
-      indices[element].splice(0, 1)
-    }
-    if(indices[potentialValue] === undefined) {
-      
-      indices[potentialValue] =  [index];
+    const pairKey = arg - element;
+    const isPair = potentialPairs[element] !== undefined && potentialPairs[element].length;
+    if (isPair) {
+      sum += index + potentialPairs[element][0];
+      potentialPairs[element].splice(0, 1);
     } else {
-      
-      indices[potentialValue] =  [...indices[potentialValue], index];
+      if (potentialPairs[pairKey] === undefined) {
+        potentialPairs[pairKey] = [index];
+      } else {
+        potentialPairs[pairKey] = [...potentialPairs[pairKey], index];
+      }
     }
   }
-  return sum
+  return sum;
 }
 
-console.log(pairwise([0, 0, 0, 0, 1, 1], 1));
+console.log(pairwise([1, 1, 1], 2));
 // 1 + 3 + 2 + 5
 // Pairwise
 
