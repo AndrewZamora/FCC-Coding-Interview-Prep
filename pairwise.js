@@ -1,4 +1,5 @@
 function pairwise(arr, arg) {
+  // Store target pair as key and index as value to prevent extra iteration
   let potentialPairs = {};
   let sum = 0;
   for (let index = 0; index < arr.length; index++) {
@@ -6,9 +7,11 @@ function pairwise(arr, arg) {
     const pairKey = arg - element;
     const isPair = potentialPairs[element] !== undefined && potentialPairs[element].length;
     if (isPair) {
+      // Add up index sum and remove pair
       sum += index + potentialPairs[element][0];
       potentialPairs[element].splice(0, 1);
     } else {
+      // Store pair
       if (potentialPairs[pairKey] === undefined) {
         potentialPairs[pairKey] = [index];
       } else {
@@ -20,7 +23,6 @@ function pairwise(arr, arg) {
 }
 
 console.log(pairwise([1, 1, 1], 2));
-// 1 + 3 + 2 + 5
 // Pairwise
 
 // Given an array arr, find element pairs whose sum equal the second argument arg and return the sum of their indices.
