@@ -1,23 +1,15 @@
 function insertionSort(array) {
-  let sorted = [];
-
-  for (let index = 0; index < array.length; index++) {
-    if (!sorted.length) {
-      sorted.push(array[index]);
-    } else {
-      for (let j = sorted.length - 1; j >= 0; j--) {
-        const element = sorted[j];
-        if (array[index] > element) {
-          sorted.splice(j + 1, 0, array[index]);
-          break;
-        }
-        if (j === 0) {
-          sorted.unshift(array[index]);
-        }
-      }
+  for (let index = 1; index < array.length; index++) {
+    const currentValue = array[index];
+    let j = index - 1;
+    console.log({currentValue, arr: array[j]})
+    while (j >= 0 && array[j] > currentValue) {
+      array[j + 1] = array[j];
+      j--;
     }
+    array[j + 1] = currentValue;
   }
-  return sorted;
+  return array;
 }
 
 console.log(insertionSort([5, 4, 33, 2, 8]));
