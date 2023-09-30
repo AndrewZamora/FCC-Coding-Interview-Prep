@@ -1,10 +1,30 @@
 function quickSort(array) {
-  // Only change code below this line
-  return array;
-  // Only change code above this line
+  function swap(array, indexA, indexB) {
+    const wasA = array[indexA];
+    array[indexA] = array[indexB];
+    array[indexB] = wasA;
+  }
+  function sort(array, start, end) {
+    if (start >= end) {
+      return;
+    }
+    let pivotValue = array[end];
+    let pivotIndex = start;
+    for (let i = start; i < end; i++) {
+      if (array[i] < pivotValue) {
+        swap(array, i, pivotIndex);
+        pivotIndex++
+      }
+    }
+    swap(array, pivotIndex, end);
+    sort(array, start, pivotIndex - 1);
+    sort(array, pivotIndex + 1, end);
+  }
+  sort(array, 0, array.length - 1);
+  return array
 }
 
-console.log(quickSort())
+console.log(quickSort([4, 9, 8, 5, 2, 2]))
 // Implement Quick Sort
 
 // Here we will move on to an intermediate sorting algorithm: quick sort.
