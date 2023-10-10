@@ -1,28 +1,24 @@
 function bubbleSort(array) {
-  // Only change code below this line
-  const swapArrayItems = (arrayToSwap, indexA, indexB) => {
-    const previousElementForA = arrayToSwap[indexA];
-    arrayToSwap[indexA] = arrayToSwap[indexB];
-    arrayToSwap[indexB] = previousElementForA;
-  };
-  let swapped = true;
-  while (swapped) {
-    swapped = false;
-    for (let index = 0; index < array.length - 1; index++) {
-      if (array[index] > array[index + 1]) {
-        swapped = true;
-        swapArrayItems(array, index, index + 1);
+  function swap(array, a, b) {
+    let temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
+  }
+  for (let index = 0; index < array.length; index++) {
+    for (let j = 0; j < array.length - index; j++) {
+      if (array[j] > array[j + 1]) {
+        swap(array, j, j + 1);
       }
     }
   }
-  console.log(array);
   return array;
-  // Only change code above this line
 }
 
-bubbleSort([
-  1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92,
-]);
+console.log(
+  bubbleSort([
+    1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92,
+  ])
+);
 
 // Implement Bubble Sort
 
